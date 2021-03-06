@@ -1,0 +1,89 @@
+
+.siteBody {
+    height: 100%;
+    width: 100%;
+    background-color: whitesmoke;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: navy;
+}
+
+.siteHeader {    
+    height: 30px;
+    padding-top: 5px;
+    background-color: rgb(6, 6, 37);
+    color: white;
+    font-size: 25px;
+    font-weight:700;
+    text-align: center;
+    margin-bottom: 0px;
+    border-radius: 0%;
+}
+
+
+.sectionContainer {
+    min-height: 260px;
+    padding: 5px;
+    margin: 10px;
+    background-color: ghostwhite;
+    border: 1px solid gray;
+    box-shadow: 1px 2px 2px 1px lightslategray;
+    display: flex;
+    margin-left: 25px;
+    margin-top: 10px;
+    margin-right: 25px;
+}
+ 
+.cardContainer {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-flow: wrap;
+}
+
+.teamCard {
+    margin: 15px;
+    height: 280px;
+    max-width: 280px;
+    min-width: 280px;
+    background-color: #eeeee4;
+    color: navy;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content:left;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.cardHeader {
+    background-color: steelblue;
+    color: white;
+    width: 100%;  
+    text-align: center;
+    font-size: 17px;
+}
+
+.titleCaption {
+    background-color: steelblue;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.cardRow {
+    width: 80%;
+    height: 45px;
+    background-color: ghostwhite;
+    font-size: 13px;
+    border: 1px solid black;
+    text-align: left;
+    text-indent: 10px;
+
+}
+
+.collapsedVis {
+    display: none;
+}
