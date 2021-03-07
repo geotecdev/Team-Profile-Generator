@@ -21,7 +21,7 @@
                 <div class="titleCaption">Manager</div>
                 <div class="cardRow">Id: 1</div>
                 <div class="cardRow">Email: <span class="emailLink">andrew@email.com</span></div>
-                <div class="cardRow">Office Number: </div>
+                <div class="cardRow">Office Number: <span class=""></span></div>
             </div>
             <div class="teamCard">
                 <div class="cardHeader">Mike</div>
@@ -61,15 +61,19 @@
     let emailSpans = document.querySelector(".emailLink");
     let gitHubSpans = document.querySelector(".gitHubLink")
 
-    emailSpans.addEventListener("click", function() {
-        let email = this.textContent;
-        window.location.href = `mailto:${email}`;
-    });
+    window.onload = function() {
+        
+        emailSpans.addEventListener("click", function() {
+            let email = this.textContent;
+            window.location.href = `mailto:${email}`;
+        });
 
-    gitHubSpans.addEventListener("click", function() {
-        let gitHubName = this.textContent;
-        window.open(`https://github.com/${gitHubName}`, "_blank");
-    });
+        gitHubSpans.addEventListener("click", function() {
+            let gitHubName = this.textContent;
+            window.open(`https://github.com/${gitHubName}`, "_blank");
+        });
+
+    }
 
 
 </script>
