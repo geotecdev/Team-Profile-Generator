@@ -14,6 +14,12 @@ https://github.com/geotecdev/Team-Profile-Generator
 ## Link to Walkthrough Video
 https://drive.google.com/file/d/1F35dnfLxEOF0UpV5MKN_Q1AYNRV5BCBd/view
 
+## App screenshots
+![command line](./images/cli-capture.png)
+
+![results page](./images/resuts-capture.png)
+
+
 ## License
 Copyright (c) 2021 Mike Ruane (geotecdev)
 
