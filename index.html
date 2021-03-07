@@ -17,7 +17,7 @@
     <div class="row col-12">
         <div class="sectionContainer cardContainer">
 
-            <div class='teamCard'><div class='cardHeader'>Andre</div><div class='titleCaption'>Manager</div><div class='cardRow'>Employee Id: 1</div><div class='cardRow'>Email address: <span class='emailLink'>andre@gmail.com</span></div><div class='cardRow'>Office Number: <span>10</span></div></div><div class='teamCard'><div class='cardHeader'>Mike</div><div class='titleCaption'>Engineer</div><div class='cardRow'>Employee Id: 2</div><div class='cardRow'>Email address: <span class='emailLink'>mruane@menardgroupusa.com</span></div><div class='cardRow'>GitHub: <span class='gitHubLink'>geotecdev</span></div></div><div class='teamCard'><div class='cardHeader'>Sonia</div><div class='titleCaption'>Intern</div><div class='cardRow'>Employee Id: 3</div><div class='cardRow'>Email address: <span class='emailLink'>sonia@gmail.com</span></div><div class='cardRow'>School: <span>drexel</span></div></div>
+            [TEAMMARKUP]
             
         </div>
     </div>
@@ -25,19 +25,24 @@
 </body>
 
 <script>
-    let emailSpans = document.querySelector(".emailLink");
-    let gitHubSpans = document.querySelector(".gitHubLink")
+    let emailSpans = document.querySelectorAll(".emailLink");
+    let gitHubSpans = document.querySelectorAll(".gitHubLink")
 
     window.onload = function() {
         
-        emailSpans.addEventListener("click", function() {
-            let email = this.textContent;
-            window.location.href = `mailto:${email}`;
+        emailSpans.forEach(emailSpan => {
+                emailSpan.addEventListener("click", function() {
+                let email = this.textContent;
+                window.location.href = `mailto:${email}`;
+            });
         });
+        
 
-        gitHubSpans.addEventListener("click", function() {
-            let gitHubName = this.textContent;
-            window.open(`https://github.com/${gitHubName}`, "_blank");
+        gitHubSpans.forEach(gitHubSpan => {
+                gitHubSpan.addEventListener("click", function() {
+                let gitHubName = this.textContent;
+                window.open(`https://github.com/${gitHubName}`, "_blank");
+            }); 
         });
 
     }
