@@ -65,9 +65,9 @@ class Intern extends Employee
     getMarkup() {
         let markUp = "<div class='teamCard'>" +
         "<div class='cardHeader'>" + this.name + "</div>" +
-        "<div class='titleCaption'>Manager</div>" +
+        "<div class='titleCaption'>Intern</div>" +
         "<div class='cardRow'>Employee Id: " + this.employeeId + "</div>" +
-        "<div class='cardRow'>Email address: " + this.email + "</div>" +
+        "<div class='cardRow'>Email address: <span class='emailLink'>" + this.email + "</span></div>" +
         "<div class='cardRow'>School: <span>" + this.school + "</span></div>" +
         "</div>";
         return markUp;
@@ -170,8 +170,41 @@ const employeePrompt = () => {
                     })
                 }
                 else {
-                    console.log("you chose default (intern)");
-                    employeePrompt();
+                    inquirer.prompt([{
+                        type: "input",
+                        name: "internName",
+                        message: "enter the intern's name"
+                    }])
+                    .then(function(answer) {
+                        let internName = answer.internName;
+                        inquirer.prompt([{
+                            type: "input",
+                            name: "internId",
+                            message: "enter the intern's Employee Id"
+                        }])
+                        .then(function(answer) {
+                            let internId = answer.internId;
+                            inquirer.prompt([{
+                                type: "input",
+                                name: "internEmail",
+                                message: "enter the intern's email address"
+                            }])
+                            .then(function(answer) {
+                                let internEmail = answer.internEmail;
+                                inquirer.prompt([{
+                                    type: "input",
+                                    name: "school",
+                                    message: "enter the intern's school"
+                                }])
+                                .then(function(answer) {
+                                    let school = answer.school;
+                                    intern = new Intern(internName, internId, internEmail, school);
+                                    console.log(intern.getMarkup());
+                                    employeePrompt();
+                                })
+                            })
+                        })                            
+                    })
                 }
             })
         }
