@@ -1,7 +1,7 @@
 //dependencies
 const { prompt } = require("inquirer");
 const inquirer = require("inquirer");
-const { findSourceMap } = require("module");
+const fs = require("fs");
 
 //variables
 let teamMarkup = "";
@@ -125,7 +125,7 @@ const employeePrompt = () => {
                                 .then(function(answer) {
                                     let officeNumber = answer.officeNumber;
                                     manager = new Manager(managerName, managerId, managerEmail, officeNumber);
-                                    console.log(manager.getMarkup());
+                                    teamMarkup += manager.getMarkup();
                                     employeePrompt();
                                 })
                             })
@@ -162,7 +162,7 @@ const employeePrompt = () => {
                                 .then(function(answer) {
                                     let gitHubUserName = answer.gitHubUserName;
                                     engineer = new Engineer(engineerName, engineerId, engineerEmail, gitHubUserName);
-                                    console.log(engineer.getMarkup());
+                                    teamMarkup += engineer.getMarkup();
                                     employeePrompt();
                                 })
                             })
@@ -199,7 +199,7 @@ const employeePrompt = () => {
                                 .then(function(answer) {
                                     let school = answer.school;
                                     intern = new Intern(internName, internId, internEmail, school);
-                                    console.log(intern.getMarkup());
+                                    teamMarkup += intern.getMarkup();
                                     employeePrompt();
                                 })
                             })
@@ -210,7 +210,10 @@ const employeePrompt = () => {
         }
         else
         {
-            console.log("finished");
+            let baseMarkup = fs.readFileSync("./index.html");
+            baseMarkup.replace("[TEAMMARKUP]", teamMarkup);
+            fs.writeFileSync("index.html", teamMarkup);
+            console.log("html file generated in root directory");
         }
     });
 
