@@ -1,5 +1,5 @@
 //dependencies
-
+const inquirer = require("inquirer");
 
 //objects
 class Employee
@@ -70,3 +70,44 @@ class Intern extends Employee
     }
 
 }
+
+const employeePrompt = () => {
+    inquirer.prompt([{
+        type: "confirm",
+        name: "addEmployee",
+        message: "add a new team member?"
+    }])
+    .then(function(answer) {
+        if (answer.addEmployee === true) {
+            console.log("add new employee");
+            inquirer.prompt([{
+                type: "list",
+                name: "employeeType",
+                message: "choose and employee type",
+                choices: ["Manager", "Engineer", "Intern"]
+            }])
+            .then(function(answer) {
+                if (answer.employeeType === "Manager") {
+                    console.log("you chose manager");
+                    employeePrompt();
+                }
+                else if (answer.employeeType === "Engineer") {
+                    console.log("you chose engineer");
+                    employeePrompt();
+                }
+                else {
+                    console.log("you chose default (intern)");
+                    employeePrompt();
+                }
+            })
+        }
+        else
+        {
+            console.log("finished");
+        }
+    })
+}
+
+
+
+employeePrompt();
