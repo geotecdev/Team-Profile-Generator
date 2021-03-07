@@ -15,16 +15,6 @@ class Employee
         this.email = email;
     }
 
-    getBaseMarkup() {
-        let markUp = "<div class='employeeCard'>" +
-        "<div class='cardHeader'>" + this.name + "</div>" +
-        "<div class='titleCaption'></div>" +
-        "<div class='cardRow'>" + this.employeeId + "</div>" +
-        "<div class='cardRow'>" + this.email + "</div>" +
-        "<div class='cardRow lastRow'>LASTROWVAL</div>" +
-        "</div>";
-        return markUp;
-    }
 }
 
 class Manager extends Employee
@@ -39,7 +29,7 @@ class Manager extends Employee
         "<div class='cardHeader'>" + this.name + "</div>" +
         "<div class='titleCaption'>Manager</div>" +
         "<div class='cardRow'>Employee Id: " + this.employeeId + "</div>" +
-        "<div class='cardRow' Email address: >" + this.email + "</div>" +
+        "<div class='cardRow'>Email address: " + this.email + "</div>" +
         "<div class='cardRow'>Office Number: <span>" + this.officeNumber + "</span></div>" +
         "</div>";
         return markUp;
@@ -54,11 +44,14 @@ class Engineer extends Employee
     }
 
     getMarkup() {
-        let markUp = this.getBaseMarkup();
-        //append gitHubUsername
-        let lastRow = markUp.querySelector(".lastRow");
-        lastRow.textContent = this.gitHubUsername;
-        return markup;
+        let markUp = "<div class='teamCard'>" +
+        "<div class='cardHeader'>" + this.name + "</div>" +
+        "<div class='titleCaption'>Manager</div>" +
+        "<div class='cardRow'>Employee Id: " + this.employeeId + "</div>" +
+        "<div class='cardRow'>Email address:" + this.email + "</div>" +
+        "<div class='cardRow'>GitHub: <span class='gitHubLink'>" + this.gitHubUsername + "</span></div>" +
+        "</div>";
+        return markUp;
     }
 }
 
@@ -70,11 +63,14 @@ class Intern extends Employee
     }
 
     getMarkup() {
-        let markUp = this.getBaseMarkup();
-        //append school
-        let lastRow = markUp.querySelector(".lastRow");
-        lastRow.textContent = this.school;
-        return markup;
+        let markUp = "<div class='teamCard'>" +
+        "<div class='cardHeader'>" + this.name + "</div>" +
+        "<div class='titleCaption'>Manager</div>" +
+        "<div class='cardRow'>Employee Id: " + this.employeeId + "</div>" +
+        "<div class='cardRow'>Email address: " + this.email + "</div>" +
+        "<div class='cardRow'>School: <span>" + this.school + "</span></div>" +
+        "</div>";
+        return markUp;
     }
 
 }
