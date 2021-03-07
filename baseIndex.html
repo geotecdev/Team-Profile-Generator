@@ -25,19 +25,24 @@
 </body>
 
 <script>
-    let emailSpans = document.querySelector(".emailLink");
-    let gitHubSpans = document.querySelector(".gitHubLink")
+    let emailSpans = document.querySelectorAll(".emailLink");
+    let gitHubSpans = document.querySelectorAll(".gitHubLink")
 
     window.onload = function() {
         
-        emailSpans.addEventListener("click", function() {
-            let email = this.textContent;
-            window.location.href = `mailto:${email}`;
+        emailSpans.forEach(emailSpan => {
+                emailSpan.addEventListener("click", function() {
+                let email = this.textContent;
+                window.location.href = `mailto:${email}`;
+            });
         });
+        
 
-        gitHubSpans.addEventListener("click", function() {
-            let gitHubName = this.textContent;
-            window.open(`https://github.com/${gitHubName}`, "_blank");
+        gitHubSpans.forEach(gitHubSpan => {
+                gitHubSpan.addEventListener("click", function() {
+                let gitHubName = this.textContent;
+                window.open(`https://github.com/${gitHubName}`, "_blank");
+            }); 
         });
 
     }
