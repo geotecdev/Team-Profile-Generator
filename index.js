@@ -1,5 +1,10 @@
 //dependencies
+const { prompt } = require("inquirer");
 const inquirer = require("inquirer");
+const { findSourceMap } = require("module");
+
+//variables
+let teamMarkup = "";
 
 //objects
 class Employee
@@ -16,7 +21,7 @@ class Employee
         "<div class='titleCaption'></div>" +
         "<div class='cardRow'>" + this.employeeId + "</div>" +
         "<div class='cardRow'>" + this.email + "</div>" +
-        "<div class='cardRow lastRow'></div>" +
+        "<div class='cardRow lastRow'>LASTROWVAL</div>" +
         "</div>";
         return markUp;
     }
@@ -30,11 +35,14 @@ class Manager extends Employee
     }
     
     getMarkup() {
-        let markUp = this.getBaseMarkup();
-        //append officeNumber
-        let lastRow = markUp.querySelector(".lastRow");
-        lastRow.textContent = this.officeNumber;
-        return markup;
+        let markUp = "<div class='teamCard'>" +
+        "<div class='cardHeader'>" + this.name + "</div>" +
+        "<div class='titleCaption'>Manager</div>" +
+        "<div class='cardRow'>Employee Id: " + this.employeeId + "</div>" +
+        "<div class='cardRow' Email address: >" + this.email + "</div>" +
+        "<div class='cardRow'>Office Number: <span>" + this.officeNumber + "</span></div>" +
+        "</div>";
+        return markUp;
     }
 }
 
@@ -72,6 +80,10 @@ class Intern extends Employee
 }
 
 const employeePrompt = () => {
+    let manager = new Manager();
+    let engineer = new Engineer();
+    let intern = new Intern();
+
     inquirer.prompt([{
         type: "confirm",
         name: "addEmployee",
@@ -88,8 +100,45 @@ const employeePrompt = () => {
             }])
             .then(function(answer) {
                 if (answer.employeeType === "Manager") {
-                    console.log("you chose manager");
-                    employeePrompt();
+                    //.then(function(answer){
+                        inquirer.prompt([{
+                            type: "input",
+                            name: "managerName",
+                            message: "enter the manager's name"
+                        }])
+                        .then(function(answer) {
+                            //manager.name = answer.managerName;
+                            let managerName = answer.managerName;
+                            inquirer.prompt([{
+                                type: "input",
+                                name: "managerId",
+                                message: "enter the manager's Employee Id"
+                            }])
+                            .then(function(answer) {
+                                //manager.employeeId = answer.managerId;
+                                let managerId = answer.managerId;
+                                inquirer.prompt([{
+                                    type: "input",
+                                    name: "managerEmail",
+                                    message: "enter the manager's email address"
+                                }])
+                                .then(function(answer) {
+                                    let managerEmail = answer.managerEmail;
+                                    inquirer.prompt([{
+                                        type: "input",
+                                        name: "officeNumber",
+                                        message: "enter the manager's office number"
+                                    }])
+                                    .then(function(answer) {
+                                        let officeNumber = answer.officeNumber;
+                                        manager = new Manager(managerName, managerId, managerEmail, officeNumber);
+                                        console.log(manager.getMarkup());
+                                        employeePrompt();
+                                    })
+                                })
+                            })                            
+                        })                        
+                    //})                    
                 }
                 else if (answer.employeeType === "Engineer") {
                     console.log("you chose engineer");
@@ -105,7 +154,19 @@ const employeePrompt = () => {
         {
             console.log("finished");
         }
-    })
+    });
+
+    const managerPrompt = () => {
+        inquirer.prompt([{
+            type: "input",
+            name: "managerName",
+            message: "enter the manager's name"
+        }])
+        .then(function(answer) {
+            console.log(answer.name);
+        })
+     }
+    
 }
 
 
