@@ -210,9 +210,10 @@ const employeePrompt = () => {
         }
         else
         {
-            let baseMarkup = fs.readFileSync("./index.html");
-            baseMarkup.replace("[TEAMMARKUP]", teamMarkup);
-            fs.writeFileSync("index.html", teamMarkup);
+            let baseMarkup = fs.readFileSync("./baseIndex.html", "utf8");
+            console.log(baseMarkup);
+            let finalMarkup = baseMarkup.replace("[TEAMMARKUP]", teamMarkup);
+            fs.writeFileSync("./index.html", finalMarkup);
             console.log("html file generated in root directory");
         }
     });
